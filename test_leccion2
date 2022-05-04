@@ -1,0 +1,57 @@
+from leccion2 import gastos
+from leccion2 import ahorro
+from leccion2 import mediagasto
+from leccion2 import gastototanual
+from leccion2 import ingresostotales
+import pandas as pd
+import numpy as np
+
+def test_gastos():
+    test_archivo = pd.DataFrame([(0,-3,-3,-2,-1,0, -1,2,3,4,5,6),
+                                 (-6,5,-4,3,-2,1,0,1,-2,3,-4,5),
+                                 (1,-2,3,-4,5,-6,7,-8,9,-10,11,-12),
+                                 (9, -8,7,-6,5,-4,3,-2,1,0,1,-2)],
+                                  columns=['Enero','Febrero', 'Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'])
+
+    test_archivo["gastospormes"] = gastos(test_archivo)
+    assert all(test_archivo["gastospormes"] == -14.0)
+
+def test_ahorro():
+    test_archivo = pd.DataFrame([(0,-3,-3,-2,-1,0, -1,2,3,4,5,6),
+                                 (-6,5,-4,3,-2,1,0,1,-2,3,-4,5),
+                                 (1,-2,3,-4,5,-6,7,-8,9,-10,11,-12),
+                                 (9, -8,7,-6,5,-4,3,-2,1,0,1,-2)],
+                                  columns=['Enero','Febrero', 'Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'])
+
+    test_archivo["ahorropormes"] = ahorro(test_archivo)
+    assert all(test_archivo["ahorropormes"] == 13)
+
+def test_mediagasto():
+    test_archivo = pd.DataFrame([(0,-3,-3,-2,-1,0, -1,2,3,4,5,6),
+                                 (-6,5,-4,3,-2,1,0,1,-2,3,-4,5),
+                                 (1,-2,3,-4,5,-6,7,-8,9,-10,11,-12),
+                                 (9, -8,7,-6,5,-4,3,-2,1,0,1,-2)],
+                                  columns=['Enero','Febrero', 'Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'])
+
+    test_archivo["mediag"] = mediagasto(test_archivo)
+    assert all(test_archivo["mediag"] == -7.666666666666667)
+
+def test_gastototanual():
+    test_archivo = pd.DataFrame([(0,-3,-3,-2,-1,0, -1,2,3,4,5,6),
+                                 (-6,5,-4,3,-2,1,0,1,-2,3,-4,5),
+                                 (1,-2,3,-4,5,-6,7,-8,9,-10,11,-12),
+                                 (9, -8,7,-6,5,-4,3,-2,1,0,1,-2)],
+                                  columns=['Enero','Febrero', 'Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'])
+
+    test_archivo["gastotot"] = gastototanual(test_archivo)
+    assert all(test_archivo["gastotot"] == -92.0)
+
+def test_ingresostotales():
+    test_archivo = pd.DataFrame([(0,-3,-3,-2,-1,0, -1,2,3,4,5,6),
+                                 (-6,5,-4,3,-2,1,0,1,-2,3,-4,5),
+                                 (1,-2,3,-4,5,-6,7,-8,9,-10,11,-12),
+                                 (9, -8,7,-6,5,-4,3,-2,1,0,1,-2)],
+                                  columns=['Enero','Febrero', 'Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'])
+
+    test_archivo["ingresostot"] = ingresostotales(test_archivo)
+    assert all(test_archivo["ingresostot"] == 100)
